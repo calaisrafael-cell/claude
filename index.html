@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Claude — Adrielly Costa</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --surface2: #F4F3EE;
+    --border: #E8E7E0;
+    --text: #1A1A18;
+    --text-muted: #7A7A74;
+    --text-light: #ABABAB;
+    --accent: #5B4CF5;
+    --accent-light: #EEE CFF;
+    --accent-bg: #F0EEFF;
+    --accent-border: #C9C2FA;
+    --teal: #0F6E56;
+    --teal-bg: #E1F5EE;
+    --teal-border: #9FE1CB;
+    --amber: #854F0B;
+    --amber-bg: #FAEEDA;
+    --amber-border: #FAC775;
+    --coral: #993C1D;
+    --coral-bg: #FAECE7;
+    --coral-border: #F5C4B3;
+    --pink: #993556;
+    --pink-bg: #FBEAF0;
+    --pink-border: #F4C0D1;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--text);
+    color: #FFFFFF;
+    padding: 64px 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(91, 76, 245, 0.15);
+    top: -200px;
+    right: -100px;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(29, 158, 117, 0.12);
+    bottom: -100px;
+    left: 10%;
+  }
+
+  .hero-tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    max-width: 680px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 span {
+    color: #9F95F9;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.65);
+    max-width: 540px;
+    position: relative;
+    z-index: 1;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .hero-sub strong {
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+  }
+
+  /* MAIN LAYOUT */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  section {
+    padding: 56px 0 0;
+  }
+
+  section:last-child {
+    padding-bottom: 80px;
+  }
+
+  /* SECTION HEADERS */
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  /* ANALOGY CARD */
+  .analogy-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .analogy-item {
+    padding: 20px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+
+  .analogy-icon {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+
+  .analogy-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .analogy-text {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ÁREA CARDS */
+  .area-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .area-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .area-card:hover {
+    border-color: #C9C2FA;
+    box-shadow: 0 4px 24px rgba(91, 76, 245, 0.08);
+  }
+
+  .area-card.active {
+    border-color: var(--accent);
+  }
+
+  .area-header {
+    padding: 22px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .area-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-top: 2px;
+  }
+
+  .area-dot.purple { background: #F0EEFF; }
+  .area-dot.teal { background: var(--teal-bg); }
+  .area-dot.amber { background: var(--amber-bg); }
+  .area-dot.coral { background: var(--coral-bg); }
+  .area-dot.pink { background: var(--pink-bg); }
+
+  .area-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .area-role {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+
+  .area-toggle {
+    margin-left: auto;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .area-card.active .area-toggle {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    transform: rotate(45deg);
+  }
+
+  .area-body {
+    display: none;
+    padding: 0 24px 24px;
+    border-top: 1px solid var(--border);
+    margin-top: 0;
+  }
+
+  .area-card.active .area-body {
+    display: block;
+  }
+
+  .area-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    padding: 16px 0 20px;
+    line-height: 1.65;
+  }
+
+  /* PROMPT EXAMPLES */
+  .prompt-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+  }
+
+  .prompt-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    position: relative;
+    transition: border-color 0.15s;
+  }
+
+  .prompt-item:hover {
+    border-color: #C9C2FA;
+  }
+
+  .prompt-text {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text);
+    padding-right: 52px;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    font-weight: 500;
+  }
+
+  .copy-btn:hover {
+    background: var(--accent-bg);
+    color: var(--accent);
+    border-color: var(--accent-border);
+  }
+
+  .copy-btn.copied {
+    background: var(--teal-bg);
+    color: var(--teal);
+    border-color: var(--teal-border);
+  }
+
+  /* TIPS SECTION */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  .tip-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+  }
+
+  .tip-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--accent-bg);
+    -webkit-text-stroke: 1.5px var(--accent-border);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .tip-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .tip-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* LIVE TRY SECTION */
+  .try-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+  }
+
+  .try-scenarios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .scenario-pill {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 7px 16px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .scenario-pill:hover, .scenario-pill.active {
+    background: var(--accent-bg);
+    border-color: var(--accent-border);
+    color: var(--accent);
+  }
+
+  .try-input-area {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    min-height: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    width: 100%;
+    resize: vertical;
+    line-height: 1.6;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .try-input-area:focus {
+    border-color: var(--accent-border);
+  }
+
+  .try-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+  }
+
+  .try-hint {
+    font-size: 12.5px;
+    color: var(--text-light);
+  }
+
+  .try-btn {
+    background: var(--text);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 22px;
+    font-size: 13.5px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+
+  .try-btn:hover { opacity: 0.8; }
+  .try-btn:disabled { opacity: 0.35; cursor: default; }
+
+  .try-response {
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius-sm);
+    padding: 18px 20px;
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    display: none;
+  }
+
+  .try-response.show { display: block; }
+
+  .response-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .loading-dots {
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .loading-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: bounce 1.2s infinite;
+  }
+
+  .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes bounce {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 48px 0 0;
+  }
+
+  /* TAG PILLS */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+
+  .tag-purple { background: #F0EEFF; color: #534AB7; border: 1px solid #C9C2FA; }
+  .tag-teal { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); }
+  .tag-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.5);
+    padding: 32px 48px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer strong {
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .area-grid { grid-template-columns: 1fr; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .analogy-card { grid-template-columns: 1fr; }
+    .hero { padding: 48px 24px 40px; }
+    .container { padding: 0 20px; }
+    .footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Guia prático · Hotmart / eNotas</div>
+  <h1>Seu novo assistente de trabalho — o <span>Claude</span></h1>
+  <p class="hero-sub">Feito pra você, Dri. Com exemplos reais das suas áreas, prompts que você pode copiar e usar agora, e respostas sem enrolação — igual você gosta.</p>
+</div>
+
+<div class="container">
+
+  <!-- O QUE É -->
+  <section>
+    <div class="section-label">Introdução</div>
+    <div class="section-title">Tá, mas o que exatamente é o Claude?</div>
+    <p class="section-desc">Imagina que você tem um assistente superinteligente que lê e escreve muito bem, entende contexto, nunca fica na defensiva e tá disponível 24/7. Você manda uma instrução, ele executa. Simples assim.</p>
+
+    <div class="analogy-card">
+      <div class="analogy-item">
+        <div class="analogy-icon">✍️</div>
+        <div class="analogy-title" style="color: #534AB7;">Escritor</div>
+        <div class="analogy-text">Rascunha artigos de base de conhecimento, SOP, e-mails, comunicados, scripts de treinamento — no tom que você pedir.</div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-icon">🔍</div>
+        <div class="analogy-title" style="color: #0F6E56;">Analista</div>
+        <div class="analogy-text">Lê planilhas, textos, relatórios e volta com insights claros. Transforma dado bruto em pauta de reunião.</div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-icon">🔄</div>
+        <div class="analogy-title" style="color: #854F0B;">Tradutor e revisor</div>
+        <div class="analogy-text">Adapta conteúdo entre PT/EN/ES, mantendo o tom original. Revisa coerência e consistência de glossário.</div>
+      </div>
+    </div>
+
+    <p class="section-desc" style="margin-bottom: 0;">A chave é: <strong>quanto mais contexto você der</strong>, melhor o resultado. O Claude não adivinha — ele usa exatamente o que você manda. Então, diz o cargo, a situação, o público, o tom. Você vai ver a diferença.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ÁREAS DE TRABALHO -->
+  <section>
+    <div class="section-label">Por área de trabalho</div>
+    <div class="section-title">O que você pode pedir — com exemplos reais</div>
+    <p class="section-desc">Clica em cada área pra ver sugestões de uso e prompts prontos pra copiar.</p>
+
+    <div class="area-grid">
+
+      <!-- GESTÃO DE CONHECIMENTO -->
+      <div class="area-card" onclick="toggleArea(this)">
+        <div class="area-header">
+          <div class="area-dot" style="background: #F0EEFF;">📚</div>
+          <div>
+            <div class="area-name">Gestão de Conhecimento</div>
+            <div class="area-role">Ludos · Handbook · Base de artigos</div>
+          </div>
+          <div class="area-toggle">+</div>
+        </div>
+        <div class="area-body">
+          <p class="area-desc">Você já tem o conteúdo na cabeça ou no rascunho — o Claude formata, melhora a clareza, padroniza o tom e deixa o artigo pronto pra publicar. Ele também ajuda a decidir o que revisar, arquivar ou manter.</p>
+          <div class="prompt-label">Prompts prontos</div>
+          <div class="prompt-item">
+            <div class="prompt-text">Revise este artigo da nossa base de conhecimento e sugira melhorias de clareza, sem mudar o conteúdo técnico. O público é o time de CS onboarding: [cole o artigo aqui]</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-text">Tenho uma lista de artigos com quantidade de acessos. Me ajude a classificar cada um como: manter, revisar urgente ou arquivar. Critério: artigos com menos de 20 views em 90 dias são candidatos ao arquivo. [cole a lista]</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-text">Crie um modelo (template) padrão para artigos de "como fazer" no nosso handbook. O tom deve ser direto, sem juridiquês, e o público são novos colaboradores da área de CX.</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-text">Tenho este SOP antigo. Reescreva num formato mais visual e fácil de seguir, usando listas numeradas, notas de atenção e um resumo no início: [cole o SOP]</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENOTAS -->
+      <div class="area-card" onclick="toggleArea(this)">
+        <div class="area-header">
+          <div class="area-dot" style="background: var(--teal-bg);">🧾</div>
+          <div>
+            <div class="area-name">eNotas</div>
+            <div class="area-role">Processos · Suporte · Documentação</div>
+          </div>
+          <div class="area-toggle">+</div>
+        </div>
+        <div class="area-body">
+          <p class="area-desc">O Claude ajuda a transformar dados de uso e suporte em insights acionáveis, criar documentação clara para integrações e analisar padrões nos tickets do time.</p>
+          <div class="prompt-label">Prompts prontos</div>
+          <div class="prompt-item">
+            <div class="prompt-text">Analise estes dados de tickets de suporte do eNotas e identifique os 3 principais problemas recorrentes, com sugestão de como resolver cada um na base de conhecimento: [cole os dados]</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-text">Escreva um guia passo a passo para um produtor Hotmart configurar sua conta no eNotas pela primeira vez. Linguagem simples, sem jargão técnico. Tom amigável e encorajador.</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-text">Crie um FAQ com as 10 perguntas mais comuns sobre emissão de NF no eNotas, baseado nestes tickets: [cole os tickets]. Resposta curta e direta para cada pergunta.</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOCALIZAÇÃO E TRADUÇÃO -->
+      <div class="area-card" onclick="toggleArea(this)">
+        <div class="area-header">
+          <div class="area-dot" style="background: var(--amber-bg);">🌍</div>
+          <div>
+            <div class="area-name">Localização e Tradução</div>
+            <div class="area-role">Transifex · Produtos Físicos · Conteúdo Global</div>
+          </div>
+          <div class="area-toggle">+</div>
+        </div>
+        <div class="area-body">
+          <p class="area-desc">Além de traduzir, o Claude entende contexto cultural. Ele adapta o tom para cada mercado, revisa consistência de glossário e sinaliza quando uma tradução literal vai soar estranha.</p>
+          <div class="prompt-label">Prompts prontos</div>
+          <div class="prompt-item">
+            <div class="prompt-text">Traduza este conteúdo do português para o inglês americano (EN-US). O tom deve ser amigável e direto — público são criadores de conteúdo digitais. Não use traduções literais quando soarem artificiais: [cole o texto]</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-text">Revise estas traduções EN→ES e sinalize qualquer uma que soe artificial ou que perca o sentido do original. Liste com: [trecho original] → [tradução atual] → [problema] → [sugestão]</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-text">Crie um glossário de termos do eNotas em PT, EN e ES. Termos base: emissão de nota, CNPJ, série fiscal, rejeição, webhook, integração via API. Para cada termo: tradução + nota de uso.</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROCESSOS FSBU -->
+      <div class="area-card" onclick="toggleArea(this)">
+        <div class="area-header">
+          <div class="area-dot" style="background: var(--coral-bg);">⚙️</div>
+          <div>
+            <div class="area-name">Processos FSBU</div>
+            <div class="area-role">Mapeamento · SOPs · Otimização</div>
+          </div>
+          <div class="area-toggle">+</div>
+        </div>
+        <div class="area-body">
+          <p class="area-desc">O Claude é excelente para transformar um processo descrito "de cabeça" em um documento estruturado, identificar gargalos e sugerir otimizações — tudo sem precisar de uma consultoria.</p>
+          <div class="prompt-label">Prompts prontos</div>
+          <div class="prompt-item">
+            <div class="prompt-text">Vou descrever um processo do jeito que ele acontece hoje. Você transforma num SOP estruturado com: objetivo, responsável por etapa, passo a passo numerado e pontos de atenção. Processo: [descreva]</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-text">Analise este fluxo de processo e identifique: 1) etapas que parecem redundantes, 2) pontos onde erros humanos são mais prováveis, 3) oportunidades de automação ou simplificação. Fluxo: [descreva ou cole]</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-text">Crie um checklist de onboarding para novo colaborador na área de CX Operations. Divida em: primeiro dia, primeira semana, primeiro mês. Tom: acolhedor e prático.</div>
+            <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEMAND GENERATION -->
+      <div class="area-card" onclick="toggleArea(this)" style="grid-column: 1 / -1;">
+        <div class="area-header">
+          <div class="area-dot" style="background: var(--pink-bg);">📣</div>
+          <div>
+            <div class="area-name">Demand Generation</div>
+            <div class="area-role">Hotmart Send · Hotmart Pages · Campanhas</div>
+          </div>
+          <div class="area-toggle">+</div>
+        </div>
+        <div class="area-body">
+          <p class="area-desc">O Claude entra como camada de inteligência em cima do Hotmart Send e do Hotmart Pages — escrevendo copies, analisando métricas e sugerindo melhorias antes e depois dos disparos e publicações.</p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+
+            <div>
+              <div class="prompt-label" style="color: var(--accent); margin-bottom: 10px;">✉️ Hotmart Send</div>
+              <div class="prompt-item">
+                <div class="prompt-text">Analise as métricas deste disparo no Hotmart Send e me diz o que a taxa de clique baixa indica, qual hipótese temos para o CTA, e sugira 2 variações de assunto para um reenvio para quem abriu mas não clicou. Dados: [cole]</div>
+                <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+              </div>
+              <div class="prompt-item">
+                <div class="prompt-text">Crie uma sequência de 3 e-mails de nutrição para leads que se cadastraram via Hotmart Pages na oferta [nome]. E-mail 1: boas-vindas. E-mail 2: prova de valor. E-mail 3: CTA com urgência. Tom: próximo e direto.</div>
+                <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+              </div>
+              <div class="prompt-item">
+                <div class="prompt-text">Tenho este e-mail pronto para disparar no Hotmart Send. Revise: o assunto prende atenção? O CTA está claro? O texto é longo demais? Sugira melhorias sem mudar a essência. E-mail: [cole]</div>
+                <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="prompt-label" style="color: var(--pink); margin-bottom: 10px;">🖥️ Hotmart Pages</div>
+              <div class="prompt-item">
+                <div class="prompt-text">Analise os dados desta landing page no Hotmart Pages: visitas, taxa de conversão, tempo na página e bounce rate. Diga qual é o problema principal e reescreva o headline e subheadline com foco em conversão. Dados: [cole]</div>
+                <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+              </div>
+              <div class="prompt-item">
+                <div class="prompt-text">Preciso criar uma landing page no Hotmart Pages para [oferta/evento]. Escreva: headline principal, subheadline, 3 bullets de benefício, prova social sugerida e CTA. Público: [descreva]. Tom: [direto / empolgante / educativo]</div>
+                <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+              </div>
+              <div class="prompt-item">
+                <div class="prompt-text">Crie 3 variações de headline para teste A/B nesta página do Hotmart Pages. Variação 1: foco no resultado. Variação 2: foco na dor/problema. Variação 3: foco na urgência. Contexto da oferta: [descreva]</div>
+                <button class="copy-btn" onclick="copyPrompt(this, event)">Copiar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- DICAS -->
+  <section>
+    <div class="section-label">Como usar melhor</div>
+    <div class="section-title">5 dicas pra você tirar o máximo</div>
+    <p class="section-desc">O Claude responde de acordo com o que você manda. Essas dicas fazem a diferença.</p>
+
+    <div class="tips-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div class="tip-card">
+        <div class="tip-number">01</div>
+        <div class="tip-title">Diz o contexto todo</div>
+        <div class="tip-text">Seu cargo, o público-alvo, o tom que quer, o objetivo final. Quanto mais você explica, melhor o resultado — não é como pesquisa no Google.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">02</div>
+        <div class="tip-title">Pede iteração</div>
+        <div class="tip-text">"Esse parágrafo ficou longo demais, resume em 2 linhas." "Muda o tom pra mais informal." O Claude guarda o contexto da conversa.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">03</div>
+        <div class="tip-title">Cola o dado bruto</div>
+        <div class="tip-text">Planilha, lista de tickets, e-mail longo, SOP antigo — manda tudo. O Claude lê, organiza e devolve estruturado. Não precisa formatar antes.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">04</div>
+        <div class="tip-title">Define o formato</div>
+        <div class="tip-text">"Responde em bullet points." "Faz uma tabela." "Só o parágrafo final, sem introdução." O Claude segue o formato que você pediu.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">05</div>
+        <div class="tip-title">Testa e refina</div>
+        <div class="tip-text">Primeira resposta não foi exatamente isso? Refina. "Fica mais direto.", "Adiciona um exemplo prático.", "Tira a última parte." Vai chegando lá.</div>
+      </div>
+      <div class="tip-card" style="background: #1A1A18; border-color: #1A1A18;">
+        <div class="tip-number" style="-webkit-text-stroke-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.06);">✦</div>
+        <div class="tip-title" style="color: white;">O segredo final</div>
+        <div class="tip-text" style="color: rgba(255,255,255,0.55);">Não tem resposta errada — tem contexto insuficiente. Quanto mais você treina dar contexto, mais o Claude parece ler sua mente.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- AGENTES -->
+  <section>
+    <div class="section-label">Próximo nível</div>
+    <div class="section-title">Agentes: quando o Claude trabalha <em>por</em> você</div>
+    <p class="section-desc">Até agora falamos de prompts — você pergunta, ele responde. Agentes são outra coisa: você configura uma tarefa uma vez, e ele executa sozinho, em sequência, podendo ler dados, tomar decisões e devolver um resultado final. Abaixo tem um exemplo real, do dado bruto até o output pronto.</p>
+
+    <!-- TABS -->
+    <div style="display: flex; gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 24px;">
+      <button class="agent-tab active" onclick="switchAgent(0)" style="flex:1; padding: 13px 10px; font-size: 12.5px; font-family: 'Syne', sans-serif; font-weight: 700; border: none; cursor: pointer; border-right: 1px solid var(--border); transition: background 0.15s;">📚 Auditor de KB</button>
+      <button class="agent-tab" onclick="switchAgent(1)" style="flex:1; padding: 13px 10px; font-size: 12.5px; font-family: 'Syne', sans-serif; font-weight: 700; border: none; cursor: pointer; border-right: 1px solid var(--border); transition: background 0.15s;">🧾 Triagem de tickets</button>
+      <button class="agent-tab" onclick="switchAgent(2)" style="flex:1; padding: 13px 10px; font-size: 12.5px; font-family: 'Syne', sans-serif; font-weight: 700; border: none; cursor: pointer; border-right: 1px solid var(--border); transition: background 0.15s;">🌍 Revisor de tradução</button>
+      <button class="agent-tab" onclick="switchAgent(3)" style="flex:1; padding: 13px 10px; font-size: 12.5px; font-family: 'Syne', sans-serif; font-weight: 700; border: none; cursor: pointer; transition: background 0.15s;">📣 Relatório de demanda</button>
+    </div>
+
+    <!-- AGENT 0: KB AUDITOR -->
+    <div class="agent-panel" id="agent-0">
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.65;">Toda semana você exporta os dados de acesso dos artigos do Google Analytics ou da plataforma de KB. Em vez de olhar linha por linha, o agente lê tudo, aplica a regra de negócio que você definiu e devolve um relatório de decisão pronto.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: start; margin-bottom: 24px;">
+        <!-- ETAPA 1 -->
+        <div>
+          <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">① Entrada — dado bruto</div>
+          <div style="background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; font-family: monospace; line-height: 1.8; color: var(--text-muted);">
+            Artigo | Views 30d<br>
+            <span style="color: var(--text);">Config. conta   | 412</span><br>
+            <span style="color: var(--text);">Webhook básico  | 38</span><br>
+            <span style="color: #E24B4A;">Integr. legada  | 4</span><br>
+            <span style="color: #E24B4A;">Erro código 422 | 11</span><br>
+            <span style="color: var(--text);">Emitir NF-e     | 890</span><br>
+            <span style="color: #E24B4A;">FSBU guia 2021  | 6</span>
+          </div>
+        </div>
+
+        <!-- ETAPA 2 -->
+        <div>
+          <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">② Instruções do agente</div>
+          <div style="background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; line-height: 1.75; color: var(--text);">
+            Você é um auditor de base de conhecimento. Regras:<br><br>
+            • &lt;20 views → <strong>arquivar</strong><br>
+            • 20–50 views → <strong>revisar</strong><br>
+            • &gt;50 views → <strong>manter</strong><br><br>
+            Para cada artigo, dê: decisão + motivo em 1 linha. No final, resumo executivo de 3 linhas.
+          </div>
+        </div>
+
+        <!-- ETAPA 3 -->
+        <div>
+          <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px;">③ Output — pronto pra usar</div>
+          <div style="background: var(--teal-bg); border: 1px solid var(--teal-border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; line-height: 1.8; color: var(--text-muted);">
+            <span style="color: var(--teal); font-weight: 600;">✓ MANTER</span> Config. conta (412 views)<br>
+            <span style="color: var(--amber); font-weight: 600;">↻ REVISAR</span> Webhook básico (38)<br>
+            <span style="color: #E24B4A; font-weight: 600;">✕ ARQUIVAR</span> Integr. legada (4)<br>
+            <span style="color: var(--amber); font-weight: 600;">↻ REVISAR</span> Erro 422 (11 — título ruim)<br>
+            <span style="color: var(--teal); font-weight: 600;">✓ MANTER</span> Emitir NF-e (890 views)<br>
+            <span style="color: #E24B4A; font-weight: 600;">✕ ARQUIVAR</span> FSBU 2021 (conteúdo defasado)
+          </div>
+        </div>
+      </div>
+
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <div style="font-size: 13px; color: var(--text-muted);"><strong style="color: var(--text);">Tempo manual:</strong> ~2 horas por semana&nbsp;&nbsp;→&nbsp;&nbsp;<strong style="color: var(--teal);">Com agente: &lt;2 minutos</strong></div>
+        <div style="font-size: 12px; color: var(--text-light);">Google Sheets → Claude API → E-mail automático</div>
+      </div>
+    </div>
+
+    <!-- AGENT 1: TRIAGEM DE TICKETS -->
+    <div class="agent-panel" id="agent-1" style="display:none;">
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.65;">Tickets novos chegam no Zendesk sem categoria, sem prioridade, sem sugestão de resposta. O agente lê cada um assim que entra, faz a triagem completa e devolve tudo classificado — antes do agente humano abrir.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: start; margin-bottom: 24px;">
+        <div>
+          <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">① Ticket que chegou</div>
+          <div style="background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; line-height: 1.75; color: var(--text-muted);">
+            <strong style="color: var(--text);">Assunto:</strong> NF não emitida<br><br>
+            "Boa tarde, tentei emitir a nota mas apareceu erro 422 na integração. Já conferi o CNPJ e tá certo. Tenho 15 vendas paradas esperando isso."
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">② O agente analisa</div>
+          <div style="background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; line-height: 1.75; color: var(--text);">
+            Classifique o ticket em:<br>
+            • Tema: emissão / config / integração / financeiro / outro<br>
+            • Urgência: alta / média / baixa<br>
+            • Artigo KB sugerido<br>
+            • Rascunho de 1ª resposta (3 linhas, tom empático)
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px;">③ Ticket já triado</div>
+          <div style="background: var(--teal-bg); border: 1px solid var(--teal-border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; line-height: 1.8; color: var(--text-muted);">
+            <strong style="color: var(--teal);">Tema:</strong> Erro de emissão<br>
+            <strong style="color: #E24B4A);">Urgência:</strong> 🔴 Alta (15 NFs)<br>
+            <strong style="color: var(--teal);">KB:</strong> "Como resolver erro 422"<br><br>
+            <em>"Oi! Entendi, vou te ajudar a resolver agora. O erro 422 costuma indicar divergência nos dados da série fiscal..."</em>
+          </div>
+        </div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <div style="font-size: 13px; color: var(--text-muted);"><strong style="color: var(--text);">Resultado:</strong> agente triado abre já com contexto e rascunho &nbsp;→&nbsp; <strong style="color: var(--teal);">TMA cai drasticamente</strong></div>
+        <div style="font-size: 12px; color: var(--text-light);">Zendesk webhook → Claude API → Tags + nota interna</div>
+      </div>
+    </div>
+
+    <!-- AGENT 2: TRADUTOR -->
+    <div class="agent-panel" id="agent-2" style="display:none;">
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.65;">Antes de aprovar um lote de strings no Transifex, o agente compara cada tradução com o glossário oficial e sinaliza o que precisa de atenção — sem você precisar abrir string por string.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: start; margin-bottom: 24px;">
+        <div>
+          <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">① Lote de traduções</div>
+          <div style="background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; font-family: monospace; line-height: 1.9; color: var(--text-muted);">
+            PT: "Emitir nota fiscal"<br>
+            EN: <span style="color: #E24B4A;">"Issue tax note"</span><br><br>
+            PT: "Webhook de retorno"<br>
+            EN: <span style="color: var(--teal);">"Return webhook"</span><br><br>
+            PT: "Série fiscal"<br>
+            EN: <span style="color: #E24B4A;">"Fiscal series"</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">② Glossário + instrução</div>
+          <div style="background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; line-height: 1.75; color: var(--text);">
+            Glossário oficial:<br>
+            "nota fiscal" → "invoice"<br>
+            "série fiscal" → "invoice series"<br><br>
+            Compare cada tradução. Aponte divergências com: original → tradução atual → tradução correta → motivo.
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px;">③ Relatório de revisão</div>
+          <div style="background: var(--teal-bg); border: 1px solid var(--teal-border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; line-height: 1.8; color: var(--text-muted);">
+            <span style="color: #E24B4A; font-weight: 600;">✕</span> "tax note" → deve ser <strong>"invoice"</strong> (glossário)<br><br>
+            <span style="color: var(--teal); font-weight: 600;">✓</span> "Return webhook" — ok<br><br>
+            <span style="color: #E24B4A; font-weight: 600;">✕</span> "Fiscal series" → deve ser <strong>"invoice series"</strong>
+          </div>
+        </div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <div style="font-size: 13px; color: var(--text-muted);"><strong style="color: var(--text);">Antes:</strong> revisão manual de centenas de strings &nbsp;→&nbsp; <strong style="color: var(--teal);">Agora: só as sinalizadas precisam de atenção</strong></div>
+        <div style="font-size: 12px; color: var(--text-light);">Transifex export → Claude API → Planilha de aprovação</div>
+      </div>
+    </div>
+
+    <!-- AGENT 3: DEMANDA -->
+    <div class="agent-panel" id="agent-3" style="display:none;">
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.65;">A área trabalha com <strong style="color: var(--text);">Hotmart Send</strong> (e-mail marketing — disparos, automações, métricas de abertura e clique) e <strong style="color: var(--text);">Hotmart Pages</strong> (criação de landing pages e captura de leads). O Claude entra como camada de inteligência em cima dos dados dessas ferramentas — analisando, escrevendo e sugerindo.</p>
+
+      <!-- SUB-TABS -->
+      <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+        <button class="subtab active" id="st0" onclick="switchSub(0)" style="padding: 7px 16px; font-size: 12.5px; font-family: 'DM Sans', sans-serif; font-weight: 500; border: 1px solid var(--accent-border); border-radius: 100px; cursor: pointer; background: var(--accent-bg); color: var(--accent);">✉️ Hotmart Send</button>
+        <button class="subtab" id="st1" onclick="switchSub(1)" style="padding: 7px 16px; font-size: 12.5px; font-family: 'DM Sans', sans-serif; font-weight: 500; border: 1px solid var(--border); border-radius: 100px; cursor: pointer; background: var(--bg); color: var(--text-muted);">🖥️ Hotmart Pages</button>
+      </div>
+
+      <!-- SEND PANEL -->
+      <div id="sub-0">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: start; margin-bottom: 14px;">
+          <div>
+            <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">① Métricas do disparo</div>
+            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; font-family: monospace; line-height: 1.9; color: var(--text-muted);">
+              Campanha: "Black Week"<br>
+              Enviados: 48.200<br>
+              <span style="color: var(--text);">Taxa abertura: 31,4%</span><br>
+              <span style="color: #E24B4A;">Taxa clique: 2,1%</span><br>
+              Descadastr.: 0,4%<br>
+              Conversões: 87
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">② Instrução do agente</div>
+            <div style="background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; line-height: 1.75; color: var(--text);">
+              Analise este disparo do Hotmart Send. Identifique:<br>
+              1. O que a taxa de clique baixa indica<br>
+              2. Hipótese para o CTA ou conteúdo<br>
+              3. Sugestão de assunto A/B para reenvio<br>
+              4. Segmento que merece reenvio
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px;">③ Análise gerada</div>
+            <div style="background: var(--teal-bg); border: 1px solid var(--teal-border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; line-height: 1.75; color: var(--text-muted);">
+              <strong style="color: var(--amber);">Problema:</strong> Abertura ótima (31%) mas clique fraco (2,1%) — o e-mail abriu mas não convenceu. CTA provavelmente genérico.<br><br>
+              <strong style="color: var(--teal);">A/B sugerido:</strong> "Só até meia-noite: sua oferta esperando" vs "Você abriu, mas ainda não pegou o desconto"<br><br>
+              <strong style="color: var(--text);">Reenvio:</strong> quem abriu mas não clicou (±33k pessoas).
+            </div>
+          </div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 18px; font-size: 13px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <span><strong style="color: var(--text);">Também funciona para:</strong> escrever sequências de automação, criar copies para fluxo de boas-vindas, revisar assuntos de e-mail antes do disparo</span>
+          <span style="font-size: 11.5px; color: var(--text-light);">Hotmart Send export → Claude API</span>
+        </div>
+      </div>
+
+      <!-- PAGES PANEL -->
+      <div id="sub-1" style="display:none;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: start; margin-bottom: 14px;">
+          <div>
+            <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">① Dados da página</div>
+            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; font-family: monospace; line-height: 1.9; color: var(--text-muted);">
+              Página: "Webinar gratuito"<br>
+              Visitas: 3.840<br>
+              <span style="color: #E24B4A;">Conversão: 4,2%</span><br>
+              Benchmark: ~12%<br>
+              Tempo médio: 0:38s<br>
+              Bounce: 71%
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">② Instrução do agente</div>
+            <div style="background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; line-height: 1.75; color: var(--text);">
+              Analise os dados desta landing page no Hotmart Pages. Indique:<br>
+              1. Diagnóstico do problema principal<br>
+              2. Elementos que provavelmente faltam<br>
+              3. Reescreva o headline e subheadline com foco em conversão
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px;">③ Diagnóstico gerado</div>
+            <div style="background: var(--teal-bg); border: 1px solid var(--teal-border); border-radius: var(--radius-sm); padding: 14px; font-size: 12px; line-height: 1.75; color: var(--text-muted);">
+              <strong style="color: #E24B4A;">Diagnóstico:</strong> 38s de tempo + 71% bounce = página não entregou a promessa do anúncio nos primeiros 5 segundos.<br><br>
+              <strong style="color: var(--teal);">Headline sugerido:</strong> "Aprenda [resultado específico] em 60 minutos — ao vivo e de graça"<br><br>
+              <strong style="color: var(--text);">Faltam:</strong> prova social, urgência e CTA acima da dobra.
+            </div>
+          </div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 18px; font-size: 13px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <span><strong style="color: var(--text);">Também funciona para:</strong> escrever copy completo de uma página nova, revisar CTA, criar variações para teste A/B de headlines</span>
+          <span style="font-size: 11.5px; color: var(--text-light);">Hotmart Pages dados → Claude API</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMO CONSTRUIR -->
+    <div style="margin-top: 24px; background: var(--text); border-radius: var(--radius); padding: 28px 32px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 32px;">
+      <div>
+        <div style="font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 10px;">Como construir esses agentes?</div>
+        <p style="font-size: 13.5px; color: rgba(255,255,255,0.6); line-height: 1.7; margin: 0 0 12px;">Você não precisa saber programar do zero. O caminho mais simples é o <strong style="color: white;">n8n</strong> ou o <strong style="color: white;">Make</strong>: ferramentas visuais onde você arrasta blocos conectando o Google Sheets ao Claude e ao Gmail, sem escrever código.</p>
+        <p style="font-size: 13.5px; color: rgba(255,255,255,0.6); line-height: 1.7; margin: 0;">Para automações mais personalizadas, o <strong style="color: white;">Claude Code</strong> — que o Rafa já usa no dia a dia — pode construir um script completo em minutos, que você roda quando quiser.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; min-width: 120px;">
+        <div style="background: rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 9px 14px; font-size: 12.5px; color: rgba(255,255,255,0.7); text-align: center; font-weight: 500;">n8n · Make</div>
+        <div style="background: rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 9px 14px; font-size: 12.5px; color: rgba(255,255,255,0.7); text-align: center; font-weight: 500;">Claude Code</div>
+        <div style="background: rgba(91,76,245,0.3); border: 1px solid rgba(91,76,245,0.45); border-radius: var(--radius-sm); padding: 9px 14px; font-size: 12.5px; color: #9F95F9; text-align: center; font-weight: 600;">Claude API</div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+
+<style>
+.agent-tab { background: var(--bg); color: var(--text-muted); }
+.agent-tab.active { background: var(--surface); color: var(--text); }
+.agent-tab:hover:not(.active) { background: var(--surface); }
+</style>
+<script>
+function switchSub(idx) {
+  document.querySelectorAll('.subtab').forEach((t,i) => {
+    const on = i === idx;
+    t.style.background = on ? 'var(--accent-bg)' : 'var(--bg)';
+    t.style.color = on ? 'var(--accent)' : 'var(--text-muted)';
+    t.style.borderColor = on ? 'var(--accent-border)' : 'var(--border)';
+  });
+  document.getElementById('sub-0').style.display = idx === 0 ? 'block' : 'none';
+  document.getElementById('sub-1').style.display = idx === 1 ? 'block' : 'none';
+}
+
+function switchAgent(idx) {
+  document.querySelectorAll('.agent-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  document.querySelectorAll('.agent-panel').forEach((p,i) => p.style.display = i===idx ? 'block' : 'none');
+}
+
+function toggleArea(card) {
+  const wasActive = card.classList.contains('active');
+  document.querySelectorAll('.area-card').forEach(c => c.classList.remove('active'));
+  if (!wasActive) card.classList.add('active');
+}
+
+function copyPrompt(btn, e) {
+  e.stopPropagation();
+  const text = btn.previousElementSibling.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+
+</script>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>Feito com carinho pelo Rafa · eNotas · Hotmart</div>
+</div>
+
+</body>
+</html>
