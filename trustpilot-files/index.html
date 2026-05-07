@@ -457,7 +457,12 @@ async function fetchFromSheetDB() {
   try {
     const resp=await fetch(`${SHEETDB_URL}?sheet=${encodeURIComponent(SHEET_NAME)}&limit=0`);
     if(!resp.ok) throw new Error(`SheetsDB retornou HTTP ${resp.status}`);
-    const rows=await resp.json(); const data=processRows(rows);
+    const rows=await resp.json();
+    console.log('[SheetsDB] total linhas:', rows.length);
+    if(rows.length>0){console.log('[SheetsDB] 1ª linha:', JSON.stringify(rows[0]));console.log('[SheetsDB] colunas disponíveis:', Object.keys(rows[0]));}
+    else{console.warn('[SheetsDB] resposta vazia - verifique o nome da aba e a URL');}
+    const data=processRows(rows);
+    console.log('[processRows] total processado:', data.total, '| negativas:', data.negativas);
     renderDashboard(data); setText('lastUpdatedLabel',`Atualizado agora · ${rows.length} linhas`);
   } catch(err) { console.error('Erro:',err); setText('lastUpdatedLabel',`Erro: ${err.message}`); alert(`Não foi possível buscar os dados.\n\n${err.message}`); }
   finally { btn.disabled=false; btn.classList.remove('loading'); }
